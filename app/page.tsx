@@ -1,5 +1,10 @@
-import Image from "next/image"
+import BookList from "components/BookList"
 
 export default function Home() {
-  return <></>
+  return (
+    <>
+      <BookList />
+      <p>test</p>
+    </>
+  )
 }
