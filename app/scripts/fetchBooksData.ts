@@ -1,11 +1,7 @@
-import { Dispatch, SetStateAction } from "react"
-import type { BookTypes } from "types/bookTypes"
+import { GET } from "scripts/fetch"
 
-export const fetchBooksData = async (
-  setBooksData: Dispatch<SetStateAction<BookTypes[]>>,
-) => {
-  const res = await fetch("/json/books.json")
-  const data = await res.json()
-
-  setBooksData(data)
+export const fetchBooksData = async () => {
+  const response = await GET("v1/books")
+  console.log("GET Request Response:", response)
+  return response
 }
