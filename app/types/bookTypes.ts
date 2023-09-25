@@ -1,10 +1,9 @@
 export type BookTypes = {
-  author: string
-  country: string
-  imageLink: string
-  language: string
-  link: string
-  pages: number
   title: string
+  author: string
+  imageLink: string
+  pages: number
   year: number
+  description: string
+  id: number
 }
