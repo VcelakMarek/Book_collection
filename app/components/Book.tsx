@@ -18,7 +18,10 @@ const Book = ({ book, isAdmin }: Props) => {
   }
   return (
     <Link
-      href={`/bookDetails_${book.id}`}
+      href={{
+        pathname: `/bookDetails_${book.id}`,
+        query: book,
+      }}
       className="w-72 h-[480px] bg-green-300 flex justify-center rounded-3xl my-5"
     >
       <figure className="w-56 h-[345px] absolute">
