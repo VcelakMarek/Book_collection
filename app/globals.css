@@ -9,7 +9,7 @@ h2 {
 }
 
 h3 {
-  @apply text-xs font-medium text-grey;
+  @apply text-xs font-medium text-black;
 }
 
 input[type="text"],
