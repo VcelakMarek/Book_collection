@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div className="w-full h-full bg-white-background">
       <Header />
-      <main className=" flex flex-row ">
+      <main>
         <BookList />
       </main>
     </div>

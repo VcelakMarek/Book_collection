@@ -22,7 +22,7 @@ const Book = ({ book, isAdmin }: Props) => {
         pathname: `/bookDetails_${book.id}`,
         query: book,
       }}
-      className="w-72 h-[480px] bg-green-300 flex justify-center rounded-3xl my-5"
+      className="w-72 h-[480px] bg-[#7e88c3] flex justify-center rounded-3xl my-5"
     >
       <figure className="w-56 h-[345px] absolute">
         <img
@@ -30,7 +30,7 @@ const Book = ({ book, isAdmin }: Props) => {
           alt={book.title}
           className="rounded-3xl w-[224px] h-[345px] relative top-8 left-0"
         />
-        <figcaption className="text-center flex gap-1 flex-col m-3">
+        <figcaption className="relative top-10 text-center  m-3">
           <h2>{book.title}</h2>
           <h3>{book.author}</h3>
         </figcaption>
