@@ -43,7 +43,7 @@ export const PUT = async <T>(url: string, data: any): Promise<T | null> => {
   }
 }
 
-export const REMOVE = async <T>(url: string): Promise<T | null> => {
+export const DELETE = async <T>(url: string): Promise<T | null> => {
   try {
     const response: AxiosResponse<T> = await api.delete(BASE_URL + url)
     return response.data
