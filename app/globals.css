@@ -1,20 +1,44 @@
 @tailwind base;
+
+h1 {
+  @apply text-xl font-bold text-black;
+}
+
+h2 {
+  @apply text-base font-bold text-black;
+}
+
+h3 {
+  @apply text-xs font-medium text-grey;
+}
+
+input[type="text"],
+[type="number"],
+select {
+  @apply mt-2.5 mb-5 h-12 rounded-md border border-light-grey px-5 text-sm font-bold text-black outline-purple active:border-purple;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 @tailwind components;
 @tailwind utilities;
 
+input,
+select {
+  @apply mt-2.5 mb-5 h-12 rounded-md border px-5 text-sm font-bold text-black outline-purple active:border-purple;
+}
+
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
+  --purple: #7c5dfa;
+  --purple-hover: #9277ff;
+  --red: #ec5757;
+  --red-hover: #ff9797;
+  --light-grey: #dfe3fa;
+  --grey: #e6e8f5;
+  --white-background: #f8f8fb;
+  --black: #0c0e16;
 }
