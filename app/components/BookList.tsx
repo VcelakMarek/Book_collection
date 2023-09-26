@@ -1,13 +1,34 @@
 "use client"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import Book from "./Book"
 import type { BookTypes } from "types/bookTypes"
-import { fetchBooksData } from "../scripts/fetchBooksData"
+import { fetchBooksData } from "scripts/fetchBooksData"
 
-const BookList = async () => {
-  const [booksData, setBooksData] = useState<BookTypes[]>()
-  fetchBooksData(setBooksData)
-
-  return <div>{booksData && <p>{booksData[0].author}</p>}</div>
+type Props = {
+  isAdmin?: boolean
 }
 
+const BookList = ({ isAdmin }: Props) => {
+  const [booksData, setBooksData] = useState<BookTypes[]>()
+
+  useEffect(() => {
+    const fetch = async () => {
+      const response = await fetchBooksData()
+      setBooksData(response)
+    }
+    fetch()
+  }, [])
+
+  return (
+    <div>
+      {booksData?.length ? (
+        booksData.map((book) => (
+          <Book isAdmin={isAdmin ? true : false} key={book.id} book={book} />
+        ))
+      ) : (
+        <p>Loading...</p>
+      )}
+    </div>
+  )
+}
 export default BookList
