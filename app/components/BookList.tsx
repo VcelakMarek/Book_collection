@@ -20,7 +20,11 @@ const BookList = ({ isAdmin }: Props) => {
   }, [])
 
   return (
-    <div className="w-screen flex flex-wrap gap-8 justify-center">
+    <div
+      className={`w-screen bg-white-background ${
+        !isAdmin && "w-screen flex flex-wrap gap-8 justify-center"
+      }`}
+    >
       {booksData?.length ? (
         booksData.map((book) => (
           <Book isAdmin={isAdmin ? true : false} key={book.id} book={book} />
