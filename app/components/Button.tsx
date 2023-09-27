@@ -29,8 +29,9 @@ const Button = ({
   submit,
 }: Props) => {
   const border = "rounded-full"
-  const dimensions = "h-12 pl-6 pr-6"
+  const dimensions = "h-12 px-6"
   const text = "font-bold text-xs tracking-[1px]"
+  const flex = "flex items-center"
 
   const baseClasses = [
     backgroundvariant[variant],
@@ -40,9 +41,11 @@ const Button = ({
     text,
   ]
 
+  const hrefClasses = baseClasses.concat(flex)
+
   if (href) {
     return (
-      <Link href={href} className={baseClasses.join(" ")}>
+      <Link href={href} className={hrefClasses.join(" ")}>
         {children}
       </Link>
     )
