@@ -1,28 +1,21 @@
 import Link from "next/link"
 import React from "react"
-import { DELETE } from "scripts/fetch"
-import { BookTypes } from "types/bookTypes"
+import { BookType } from "types/bookTypes"
 import Button from "./Button"
-import { useRouter } from "next/router"
 
 type Props = {
-  book: BookTypes
+  book: BookType
   isAdmin?: boolean
+  onDelete: (id: string) => void
 }
 
-const Book = ({ book, isAdmin }: Props) => {
-  // const router = useRouter()
-  const onDelete = () => {
-    DELETE(`v1/books/${book.id.toString()}`)
-    // router.push("/v1/books/admin")
-  }
-
+const Book = ({ book, isAdmin, onDelete }: Props) => {
   if (isAdmin) {
     return (
       <Link
         href={{
-          pathname: `/bookDetails_${book.id}`,
-          query: book,
+          pathname: `/details`,
+          query: { id: book.id },
         }}
         className="mb-4 flex p-4 w-11/12 items-center justify-around mx-auto rounded-lg border-[1.5px] border-transparent bg-white gap-7 my-7 drop-shadow hover:border-[1.5px] hover:border-[#7C5DFA] flex-wrap"
       >
@@ -33,8 +26,25 @@ const Book = ({ book, isAdmin }: Props) => {
         <h2 className="basis-2/12">{book.title}</h2>
         <h2 className="basis-2/12">{book.author}</h2>
         <div className="flex basis-2/12 items-center gap-5">
-          <Button variant="secondary">Update</Button>
-          <Button variant="delete" onClick={onDelete}>
+          <Button
+            variant="secondary"
+            href={{
+              pathname: `/details`,
+              query: { id: book.id, isEdit: true },
+            }}
+            onClick={(e) => {
+              e.preventDefault()
+            }}
+          >
+            Edit
+          </Button>
+          <Button
+            variant="delete"
+            onClick={(e) => {
+              e.preventDefault()
+              onDelete(book.id.toString())
+            }}
+          >
             Delete
           </Button>
         </div>
@@ -44,10 +54,10 @@ const Book = ({ book, isAdmin }: Props) => {
     return (
       <Link
         href={{
-          pathname: `/bookDetails_${book.id}`,
-          query: book,
+          pathname: `/details`,
+          query: { id: book.id },
         }}
-        className="w-72 h-[480px] bg-[#7e88c3] flex justify-center rounded-3xl my-5"
+        className="w-72 h-[480px] bg-slate-300 flex justify-center rounded-3xl my-5"
       >
         <figure className="w-56 h-[345px] absolute">
           <img
