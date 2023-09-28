@@ -1,8 +1,14 @@
 import BookForm from "components/BookForm"
+import Header from "components/Header"
 import React from "react"
 
 const New = () => {
-  return <BookForm />
+  return (
+    <>
+      <Header isButton={false} />
+      <BookForm />
+    </>
+  )
 }
 
 export default New
