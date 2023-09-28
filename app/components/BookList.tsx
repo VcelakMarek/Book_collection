@@ -1,20 +1,33 @@
 "use client"
 import { useEffect, useState } from "react"
 import Book from "./Book"
-import type { BookTypes } from "types/bookTypes"
-import { fetchBooksData } from "scripts/fetchBooksData"
+import type { BookType } from "types/bookTypes"
+import { fetchBooksData } from "../api/bookApi"
+import { DELETE } from "connectors/fetch"
 
 type Props = {
   isAdmin?: boolean
 }
 
 const BookList = ({ isAdmin }: Props) => {
-  const [booksData, setBooksData] = useState<BookTypes[]>()
+  const [booksData, setBooksData] = useState<BookType[] | null>(null)
+
+  const onDelete = (id: string) => {
+    DELETE(`v1/books/${id}`)
+    setBooksData((prev) => {
+      if (prev !== null) {
+        return prev.filter((book) => book.id !== id)
+      }
+    })
+  }
 
   useEffect(() => {
     const fetch = async () => {
       const response = await fetchBooksData()
-      setBooksData(response)
+      console.log("response", response)
+      if (response?.data) {
+        setBooksData(response.data)
+      }
     }
     fetch()
   }, [])
@@ -27,7 +40,12 @@ const BookList = ({ isAdmin }: Props) => {
     >
       {booksData?.length ? (
         booksData.map((book) => (
-          <Book isAdmin={isAdmin ? true : false} key={book.id} book={book} />
+          <Book
+            isAdmin={isAdmin ? true : false}
+            key={book.id}
+            book={book}
+            onDelete={onDelete}
+          />
         ))
       ) : (
         <p>Loading...</p>
