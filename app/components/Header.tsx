@@ -15,7 +15,9 @@ const Header = ({ isAdmin, isButton = true }: Props) => {
         <Link href="/">
           <h1>Book Collection</h1>
         </Link>
-        {isButton && <Button href={href}>{isAdmin ? "New" : "Admin"}</Button>}
+        {isButton && (
+          <Button href={href}>{isAdmin ? "New book" : "Admin"}</Button>
+        )}
       </header>
       <div className="h-px w-screen bg-gray-300"></div>
     </>
