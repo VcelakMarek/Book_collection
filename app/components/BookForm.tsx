@@ -1,39 +1,85 @@
 "use client"
-import { FC, useId } from "react"
+import { FC } from "react"
 import { Form } from "react-final-form"
 import { FormApi } from "final-form"
-import { POST, PUT } from "scripts/fetch"
+import { useRouter } from "next/navigation"
+import { addNewBook, editBook } from "api/bookApi"
 import FormInput from "components/FormInput"
 import Button from "components/Button"
-import type { BookTypes } from "types/bookTypes"
-
-type FormDataTypes = {
-  [key: string]: BookTypes[]
-}
+import type { BookType } from "types/bookTypes"
 
 type BookFormProps = {
-  form?: FormApi<FormDataTypes>
-  formValues?: BookTypes
+  form?: FormApi<FormData>
+  formValues?: BookType
 }
 
 const BookForm: FC<BookFormProps> = ({ formValues }) => {
+  const { push } = useRouter()
+
   const onSubmit = (
-    values: FormDataTypes,
+    values: BookType,
     e: React.MouseEvent<HTMLButtonElement>,
   ) => {
-    formValues
-      ? PUT(`v1/books/${formValues.id}`, values)
-      : POST("v1/books", values)
+    formValues ? editBook(formValues.id, values) : addNewBook(values)
+    push("/admin")
   }
 
-  return (
-    <div>
-      <div className="absolute z-10 h-screen w-screen bg-white-background">
-        <div className="fixed h-screen w-screen grid place-items-center">
-          <h1>{formValues ? "Edit book" : "New book"}</h1>
-
+  if (formValues) {
+    return (
+      <Form
+        id="editBook"
+        className="w-screen"
+        onSubmit={onSubmit}
+        initialValues={formValues ? { ...formValues } : null}
+        render={({ handleSubmit, values, form }) => (
+          <form onSubmit={handleSubmit}>
+            <main className="bg-white-background flex flex-wrap h-screen w-screen pt-10">
+              <section className="w-[320px] mx-auto">
+                <img
+                  className="h-[499px] w-[323px]"
+                  src={formValues.imageLink}
+                  alt={formValues.title}
+                ></img>
+              </section>
+              <section className="w-3/5 flex flex-col gap-1 mx-auto">
+                <FormInput inputName="Title" id="title" />
+                <FormInput inputName="Author" id="author" />
+                <FormInput inputName="Description" id="description" />
+                <div className="flex gap-10 mt-10">
+                  <div>
+                    <FormInput
+                      inputName="Year"
+                      size="small"
+                      inputType="number"
+                      id="year"
+                    />
+                  </div>
+                  <div>
+                    <FormInput
+                      inputName="Pages"
+                      size="small"
+                      inputType="number"
+                      id="pages"
+                    />
+                  </div>
+                </div>
+                <FormInput inputName="Image Link" id="imageLink" />
+                <Button submit variant="secondary">
+                  Edit book
+                </Button>
+              </section>
+            </main>
+          </form>
+        )}
+      />
+    )
+  } else
+    return (
+      <>
+        <div className="fixed h-screen w-screen grid place-items-center bg-white-background">
+          <h1>New book</h1>
           <Form
-            id="newInvoice"
+            id="newBook"
             className="w-[504px]"
             onSubmit={onSubmit}
             initialValues={formValues ? { ...formValues } : null}
@@ -59,16 +105,13 @@ const BookForm: FC<BookFormProps> = ({ formValues }) => {
                 </div>
                 <FormInput inputName="Description" id="description" />
 
-                <Button submit>
-                  {formValues ? "Edit book" : "Create new book"}
-                </Button>
+                <Button submit>Create new book</Button>
               </form>
             )}
           />
         </div>
-      </div>
-    </div>
-  )
+      </>
+    )
 }
 
 export default BookForm
