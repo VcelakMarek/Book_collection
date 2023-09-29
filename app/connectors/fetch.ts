@@ -1,8 +1,7 @@
 import axios, { AxiosResponse } from "axios"
-import { BookType } from "types/bookTypes"
+import type { BookType } from "types/bookType"
 
 const BASE_URL = "https://650fc0ea3ce5d181df5ca6fb.mockapi.io/api/"
-const api = axios.create()
 
 export const GET = async <T>(url: string): Promise<AxiosResponse<T>> => {
   return axios({ method: "GET", baseURL: BASE_URL, url })

@@ -1,7 +1,7 @@
-import Link from "next/link"
 import React from "react"
-import { BookType } from "types/bookTypes"
-import Button from "./Button"
+import Link from "next/link"
+import Button from "components/Button"
+import type { BookType } from "types/bookType"
 
 type Props = {
   book: BookType
