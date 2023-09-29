@@ -1,21 +1,13 @@
 import { AxiosResponse, isAxiosError } from "axios"
-import { GET, POST, PUT } from "connectors/fetch"
-import { BookType } from "types/bookTypes"
+import { GET, POST, PUT, DELETE } from "connectors/fetch"
+import type { BookType } from "types/bookType"
 
 const handleError = (error: unknown) => {
   if (!isAxiosError(error)) {
     return null
   }
 
-  if (error.response) {
-    console.error("Response Error:", error.response.data)
-  } else if (error.request) {
-    console.error("Request Error:", error.request)
-  } else {
-    console.error("Error:", error.message)
-  }
-
-  return null
+  return error.response ? error.response : null
 }
 
 export const fetchBooksData: () => Promise<AxiosResponse<
@@ -57,6 +49,16 @@ export const editBook: (
 ) => {
   try {
     return await PUT(`v1/books/${id}`, data)
+  } catch (e) {
+    return handleError(e)
+  }
+}
+
+export const deleteBook: (
+  id: string,
+) => Promise<AxiosResponse<BookType> | null> = async (id: string) => {
+  try {
+    return await DELETE(`v1/books/${id}`)
   } catch (e) {
     return handleError(e)
   }
