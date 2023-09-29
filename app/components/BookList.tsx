@@ -34,7 +34,7 @@ const BookList = ({ isAdmin }: Props) => {
   return (
     <div
       className={`w-screen h-full bg-white-background ${
-        !isAdmin && "flex flex-wrap gap-8 justify-center"
+        isAdmin ? "flex flex-wrap gap-8 justify-center" : ""
       }`}
     >
       {booksData?.length ? (
