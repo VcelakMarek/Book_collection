@@ -35,7 +35,7 @@ const Button = ({
 }: Props) => {
   const border = "rounded-full"
   const dimensions = "h-12 px-6"
-  const text = "font-bold text-xs tracking-[1px]"
+  const text = "font-bold text-xs tracking-[1px] text-center"
   const flex = "flex items-center"
 
   const baseClasses = [

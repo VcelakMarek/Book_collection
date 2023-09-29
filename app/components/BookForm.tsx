@@ -23,57 +23,64 @@ const BookForm: FC<BookFormProps> = ({ formValues }) => {
 
   if (formValues) {
     return (
-      <Form
-        id="editBook"
-        className="w-screen"
-        onSubmit={onSubmit}
-        initialValues={formValues ?? null}
-        render={({ handleSubmit }) => (
-          <form onSubmit={handleSubmit}>
-            <main className="bg-white-background flex flex-wrap h-screen w-screen pt-10">
-              <section className="w-[320px] mx-auto">
-                <img
-                  className="h-[499px] w-[323px]"
-                  src={formValues.imageLink}
-                  alt={formValues.title}
-                ></img>
-              </section>
-              <section className="w-3/5 flex flex-col gap-1 mx-auto">
-                <FormInput inputName="Title" id="title" />
-                <FormInput inputName="Author" id="author" />
-                <FormInput inputName="Description" id="description" />
-                <div className="flex gap-10 mt-10">
-                  <div>
-                    <FormInput
-                      inputName="Year"
-                      size="small"
-                      inputType="number"
-                      id="year"
-                    />
-                  </div>
-                  <div>
-                    <FormInput
-                      inputName="Pages"
-                      size="small"
-                      inputType="number"
-                      id="pages"
-                    />
-                  </div>
-                </div>
-                <FormInput inputName="Image Link" id="imageLink" />
-                <Button submit variant="secondary">
-                  Save changes
-                </Button>
-              </section>
-            </main>
-          </form>
-        )}
-      />
+      <>
+        <div className="p-10 w-screen h-full grid place-items-center bg-white-background">
+          <h1>Edit book</h1>
+          <Form
+            id="editBook"
+            className="w-screen"
+            onSubmit={onSubmit}
+            initialValues={formValues ?? null}
+            render={({ handleSubmit }) => (
+              <form onSubmit={handleSubmit}>
+                <main className="bg-white-background flex flex-wrap h-screen w-screen pt-10">
+                  <section className="w-[320px] mx-auto">
+                    <img
+                      className="h-[499px] w-[323px]"
+                      src={formValues.imageLink}
+                      alt={formValues.title}
+                    ></img>
+                  </section>
+                  <section className="w-3/5 flex flex-col gap-1 mx-auto">
+                    <FormInput inputName="Title" id="title" />
+                    <FormInput inputName="Author" id="author" />
+                    <FormInput inputName="Description" id="description" />
+                    <div className="flex gap-10 mt-10">
+                      <div>
+                        <FormInput
+                          inputName="Year"
+                          size="small"
+                          inputType="number"
+                          id="year"
+                        />
+                      </div>
+                      <div>
+                        <FormInput
+                          inputName="Pages"
+                          size="small"
+                          inputType="number"
+                          id="pages"
+                        />
+                      </div>
+                    </div>
+                    <FormInput inputName="Image Link" id="imageLink" />
+                    <div>
+                      <Button submit variant="secondary">
+                        Save changes
+                      </Button>
+                    </div>
+                  </section>
+                </main>
+              </form>
+            )}
+          />
+        </div>
+      </>
     )
   }
   return (
     <>
-      <div className="fixed h-screen w-screen grid place-items-center bg-white-background">
+      <div className="p-10 w-screen h-full grid place-items-center bg-white-background">
         <h1>New book</h1>
         <Form
           id="newBook"
@@ -100,7 +107,6 @@ const BookForm: FC<BookFormProps> = ({ formValues }) => {
                 />
               </div>
               <FormInput inputName="Description" id="description" />
-
               <Button submit>Create new book</Button>
             </form>
           )}

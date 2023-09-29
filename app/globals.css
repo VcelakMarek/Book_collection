@@ -42,3 +42,7 @@ select {
   --white-background: #f8f8fb;
   --black: #0c0e16;
 }
+
+body {
+  @apply bg-white-background;
+}

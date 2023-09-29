@@ -56,7 +56,7 @@ const BookDetails = () => {
           <h1>{bookData.title}</h1>
           <h2>{bookData.author}</h2>
           <p>{bookData.description}</p>
-          <div className="flex gap-10 mt-28">
+          <div className="flex gap-10 mt-28 mb-10">
             <div>
               <h3>Year</h3>
               <p>{bookData.year}</p>

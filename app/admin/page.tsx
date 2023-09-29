@@ -3,11 +3,11 @@ import Header from "components/Header"
 
 export default function Admin() {
   return (
-    <div className="w-full h-full ">
+    <>
       <Header isAdmin />
-      <main className="flex justify-center items-center flex-row w-full">
+      <main>
         <BookList isAdmin={true} />
       </main>
-    </div>
+    </>
   )
 }
