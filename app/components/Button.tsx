@@ -1,12 +1,17 @@
-import Link from "next/link"
 import { ReactNode } from "react"
+import Link from "next/link"
 
 type Props = {
   variant?: "primary" | "secondary" | "delete"
   children?: ReactNode
   onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
-  href?: string
+  href?: href | string
   submit?: boolean
+}
+
+type href = {
+  pathname: string
+  query: { id: string; isEdit: boolean }
 }
 
 const backgroundvariant = {
@@ -49,17 +54,16 @@ const Button = ({
         {children}
       </Link>
     )
-  } else {
-    return (
-      <button
-        type={submit ? "submit" : "button"}
-        className={baseClasses.join(" ")}
-        onClick={onClick}
-      >
-        {children}
-      </button>
-    )
   }
+  return (
+    <button
+      type={submit ? "submit" : "button"}
+      className={baseClasses.join(" ")}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  )
 }
 
 export default Button
