@@ -1,9 +1,9 @@
 "use client"
 import { useEffect, useState } from "react"
-import Book from "./Book"
-import type { BookType } from "types/bookTypes"
-import { fetchBooksData } from "../api/bookApi"
-import { DELETE } from "connectors/fetch"
+import { fetchBooksData, deleteBook } from "api/bookApi"
+import Book from "components/Book"
+import Loading from "components/Loading"
+import type { BookType } from "types/bookType"
 
 type Props = {
   isAdmin?: boolean
@@ -12,19 +12,18 @@ type Props = {
 const BookList = ({ isAdmin }: Props) => {
   const [booksData, setBooksData] = useState<BookType[] | null>(null)
 
-  const onDelete = (id: string) => {
-    DELETE(`v1/books/${id}`)
-    setBooksData((prev) => {
-      if (prev !== null) {
-        return prev.filter((book) => book.id !== id)
-      }
-    })
+  const onDelete = async (id: string) => {
+    const response = await deleteBook(id)
+    if (response?.status == 200) {
+      setBooksData((prev) =>
+        prev ? prev.filter((book) => book.id !== id) : null,
+      )
+    }
   }
 
   useEffect(() => {
     const fetch = async () => {
       const response = await fetchBooksData()
-      console.log("response", response)
       if (response?.data) {
         setBooksData(response.data)
       }
@@ -41,14 +40,14 @@ const BookList = ({ isAdmin }: Props) => {
       {booksData?.length ? (
         booksData.map((book) => (
           <Book
-            isAdmin={isAdmin ? true : false}
+            isAdmin={isAdmin}
             key={book.id}
             book={book}
             onDelete={onDelete}
           />
         ))
       ) : (
-        <p>Loading...</p>
+        <Loading />
       )}
     </div>
   )
