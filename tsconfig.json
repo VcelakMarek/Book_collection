@@ -19,9 +19,9 @@
       }
     ],
     "paths": {
-      "types/*": ["./app/types/*"],
-      "components/*": ["./app/components/*"],
-      "connectors/*": ["./app/connectors/*"],
+      "types/*": ["./types/*"],
+      "components/*": ["./components/*"],
+      "connectors/*": ["./connectors/*"],
       "api/*": ["./app/api/*"]
     }
   },
