@@ -17,7 +17,7 @@ const Book = ({ book, isAdmin, onDelete }: Props) => {
           pathname: `/details`,
           query: { id: book.id },
         }}
-        className="mb-4 flex p-4 w-11/12 items-center justify-around mx-auto rounded-lg border-[1.5px] border-transparent bg-white gap-7 my-7 drop-shadow hover:border-[1.5px] hover:border-[#7C5DFA] flex-wrap"
+        className="mx-auto flex w-11/12 flex-wrap items-center justify-around gap-7 rounded-lg border-[1.5px] border-transparent bg-white p-4 drop-shadow hover:border-[1.5px] hover:border-[#7C5DFA]"
       >
         <h3 className="basis-2/12">
           <span className="font-bold text-grey">#</span>
@@ -57,15 +57,15 @@ const Book = ({ book, isAdmin, onDelete }: Props) => {
           pathname: `/details`,
           query: { id: book.id },
         }}
-        className="w-72 h-[480px] bg-slate-300 flex justify-center rounded-3xl my-5"
+        className="my-5 flex h-[480px] w-72 basis-1/4 justify-center rounded-3xl bg-slate-300"
       >
-        <figure className="w-56 h-[345px] absolute">
+        <figure className="absolute h-[345px] w-56">
           <img
             src={book.imageLink}
             alt={book.title}
-            className="rounded-3xl w-[224px] h-[345px] relative top-8 left-0"
+            className="relative left-0 top-8 h-[345px] w-[224px] rounded-3xl"
           />
-          <figcaption className="relative top-10 text-center  m-3">
+          <figcaption className="relative top-10 m-3  text-center">
             <h2>{book.title}</h2>
             <h3>{book.author}</h3>
           </figcaption>

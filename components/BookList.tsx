@@ -32,11 +32,7 @@ const BookList = ({ isAdmin }: Props) => {
   }, [])
 
   return (
-    <div
-      className={`w-screen h-full bg-white-background ${
-        isAdmin ? "flex flex-wrap gap-8 justify-center" : ""
-      }`}
-    >
+    <div className="${ my-8 flex h-screen w-screen flex-row flex-wrap justify-center gap-8 bg-white-background">
       {booksData?.length ? (
         booksData.map((book) => (
           <Book
