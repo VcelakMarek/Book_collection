@@ -15,7 +15,7 @@ h3 {
 input[type="text"],
 [type="number"],
 select {
-  @apply mt-2.5 mb-5 h-12 rounded-md border border-light-grey px-5 text-sm font-bold text-black outline-purple active:border-purple;
+  @apply mb-5 mt-2.5 h-12 rounded-md border border-light-grey px-5 text-sm font-bold text-black outline-purple active:border-purple;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
@@ -29,7 +29,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 input,
 select {
-  @apply mt-2.5 mb-5 h-12 rounded-md border px-5 text-sm font-bold text-black outline-purple active:border-purple;
+  @apply mb-5 mt-2.5 h-12 rounded-md border px-5 text-sm font-bold text-black outline-purple active:border-purple;
 }
 
 :root {
@@ -44,5 +44,5 @@ select {
 }
 
 body {
-  @apply bg-white-background;
+  @apply overflow-x-hidden bg-white-background;
 }

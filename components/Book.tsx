@@ -57,7 +57,7 @@ const Book = ({ book, isAdmin, onDelete }: Props) => {
           pathname: `/details`,
           query: { id: book.id },
         }}
-        className="my-5 flex h-[480px] w-72 basis-1/4 justify-center rounded-3xl bg-slate-300"
+        className="my-5 flex h-[480px] w-72 justify-center rounded-3xl bg-slate-300"
       >
         <figure className="absolute h-[345px] w-56">
           <img
