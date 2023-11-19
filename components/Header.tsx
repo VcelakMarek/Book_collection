@@ -8,10 +8,10 @@ type Props = {
 }
 
 const Header = ({ isAdmin, isButton = true }: Props) => {
-  const href = isAdmin ? "/admin/new" : "/admin"
+  const href = isAdmin ? "/admin/new" : "/?modal=true"
   return (
     <>
-      <header className="flex bg-white flex-row justify-between px-10 items-center h-20">
+      <header className="flex h-20 flex-row items-center justify-between bg-white px-10">
         <Link href="/">
           <h1>Book Collection</h1>
         </Link>
